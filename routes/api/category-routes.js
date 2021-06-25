@@ -7,11 +7,12 @@ const { sequelize } = require('../../models/Product');
 router.get('/', (req, res) => {
   // find all categories
   // be sure to include its associated Products
+  console.log("blah")
   Category.findAll({
-    attributes: ['id', 'catergory_name'],
+    attributes: ['id', 'category_name'],
     include: {
       model: Product,
-      attributes: ['id', 'product_name', 'price', 'stock', 'catergory_id']
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
     }
   })
     .then(dbCategoryData => res.json(dbCategoryData))
@@ -31,7 +32,7 @@ router.get('/:id', (req, res) => {
     },
     include: {
       model: Product,
-      attributes: ['id', 'product_name', 'price', 'stock', 'catergory_id']
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
     }
   })
     .then(dbCategoryData => {
@@ -51,7 +52,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   // create a new category
   Category.create({
-    catergory_name: req.body.catergory_name
+    category_name: req.body.category_name
   })
   .then(dbCategoryData => res.json(dbCategoryData))
   .catch(err => {

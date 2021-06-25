@@ -7,4 +7,9 @@ router.use('/categories', categoryRoutes);
 router.use('/products', productRoutes);
 router.use('/tags', tagRoutes);
 
+router.use((req, res) => {
+  res.send("<h1>Wrong API Route!</h1>")
+});
+
+
 module.exports = router;
